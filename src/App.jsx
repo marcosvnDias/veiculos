@@ -43,7 +43,7 @@ const App = () => {
     setPlaca("");
     setModelo("");
     setAno("");
-
+    setCor("");
   }
 
 
@@ -59,8 +59,8 @@ const App = () => {
 
         <div className="boxInputs">
           <input type='text' placeholder='Ano' onChange={(e) => setAno(e.target.value)} value={ano} />
-          
-          <select onChange={(e) => setCor(e.target.value)} >
+
+          <select onChange={(e) => setCor(e.target.value)} value={cor}>
             <option value={"vermelho"}>Vermelho</option>
             <option value={"azul"}>Azul</option>
             <option value={"amarelo"}>Amarelo</option>
@@ -88,7 +88,7 @@ const App = () => {
                 <td>Ano</td>
                 <td>Cor</td>
               </tr>
-            : null}
+              : null}
 
 
             {itens.map((item, index) => (
