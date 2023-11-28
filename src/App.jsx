@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import { IoClose } from "react-icons/io5";
+import { IoCreate } from "react-icons/io5";
 import './App.css'
 
 const App = () => {
@@ -11,29 +13,38 @@ const App = () => {
   const [itens, setItens] = useState([]);
 
   useEffect(() => {
-    setCor("vermelho")
+    setAno(2023);
+    setCor("vermelho");
+
   }, [])
 
   useEffect(() => {
-    console.log(itens)
+    console.log(itens);
   }, [itens])
 
   useEffect(() => {
-    console.log(placa)
+    console.log(placa);
   }, [placa])
 
   const cadastrar = () => {
+    const regex = '[A-Z]{3}[0-9][0-9A-Z][0-9]{2}';
+
 
     if (placa === "" || modelo === "" || ano === "") {
       alert("Você deixou algum campo vazio");
+
     } else if (isNaN(ano)) {
       alert("Você deixou adicionou alguma letra no campo do ano");
+
+    } else if(!placa.toUpperCase().match(regex) || placa.length >= 8){
+      alert("Placa em invalida");
+
     } else {
 
       if (itens.length == 0) {
-        setItens([{ placa: placa, modelo: modelo, ano: ano, cor: cor }]);
+        setItens([{ placa: placa, modelo: modelo, ano: ano, cor: cor, id: itens.length }]);
       } else {
-        setItens([...itens, { placa: placa, modelo: modelo, ano: ano, cor: cor }]);
+        setItens([...itens, { placa: placa, modelo: modelo, ano: ano, cor: cor, id: itens.length }]);
       }
     }
 
@@ -43,7 +54,16 @@ const App = () => {
     setPlaca("");
     setModelo("");
     setAno("");
-    setCor("");
+    setCor("vermelho");
+  }
+
+  const deleteItem = (array) => {
+    console.log(array)
+
+    const itensFilter = itens.filter((item) => item.id !== array.id);
+    console.log(itensFilter)
+
+    setItens(itensFilter);
   }
 
 
@@ -79,6 +99,7 @@ const App = () => {
               <th>Modelo</th>
               <th>Ano</th>
               <th>Cor</th>
+              <th>Ação</th>
             </tr>
 
             {itens.length === 0 ?
@@ -87,16 +108,26 @@ const App = () => {
                 <td>Modelo</td>
                 <td>Ano</td>
                 <td>Cor</td>
+                <td>Ação</td>
               </tr>
               : null}
 
 
             {itens.map((item, index) => (
               <tr key={item.placa + item.ano + item.modelo + index}>
-                <td>{item.placa}</td>
+                <td>{item.placa.toUpperCase()}</td>
                 <td>{item.modelo}</td>
                 <td>{item.ano}</td>
                 <td>{item.cor}</td>
+                <td className='containerAction'>
+                  {/* <button>Editar</button>
+                  <button>Apagar</button> */}
+                  <div className='boxAction'>
+                    <IoCreate className='icon edite'/>
+                    <IoClose className='icon close' onClick={() => deleteItem({ id: item.id })}/>
+                  </div>
+
+                </td>
               </tr>
             ))}
           </tbody>

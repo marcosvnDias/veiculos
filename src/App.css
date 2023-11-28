@@ -11,7 +11,7 @@
 }
 
 .title{
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 400;
   color: white;
   padding-bottom: 22px;
@@ -112,7 +112,7 @@ select{
 
 table{
   height: 130px;
-  width: 60%;
+  width: 40%;
   background-color: #ffffff;
   border-radius: 4px;
   margin-top: 22px;
@@ -123,3 +123,77 @@ td{
   text-align: center;
 }
 
+.boxAction{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.icon{
+  height: 33px;
+  font-size: 22px;
+}
+
+.edite{
+  color: #5086b3;
+}
+
+.close{
+  color: #b35050;
+}
+
+@media(max-width: 1105px){
+  table{
+    width: 50%;
+  }
+}
+
+@media(max-width: 837px){
+  table{
+    width: 60%;
+  }
+}
+
+@media(max-width: 736px){
+  table{
+    width: 70%;
+  }
+}
+
+@media(max-width: 631px){
+  table{
+    width: 80%;
+  }
+
+  .boxInputs{
+    flex-direction: column;
+    gap: 24px;
+    /* gap: 52px; */
+  }
+
+  .boxButtons {
+    flex-direction: column-reverse;
+    gap: 15px;
+  }
+
+  .buttonClear{
+    width: 280px;
+  }
+
+  .buttonRegister{
+    width: 280px;
+  }
+}
+
+
+@media(max-width: 531px){
+  table{
+    width: 90%;
+  }
+}
+/* 27px */
+@media(max-width: 460px){
+  table{
+    width: 98%;
+  }
+}
